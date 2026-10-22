@@ -3,7 +3,11 @@
 [![Slack Status](https://img.shields.io/badge/Slack_Channel-DC_Ecology_R-E01563.svg)](https://carpentries.slack.com/messages/C9X9EC405)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3264888.svg)](https://doi.org/10.5281/zenodo.3264888)
 
-# _Data Carpentry: R for data analysis and visualization of Ecological Data_
+# Introduction to Statistical Analysis in R/RStudio
+
+This lesson has been adapted from [Data Carpentry: R for data analysis and visualization of Ecological Data](https://datacarpentry.github.io/R-ecology-lesson/).
+
+The content has been modified to include some additional content re: statistical analysis and plotting.
 
 This is an introduction to R designed for participants with no programming
 experience. It can be taught in 3/4 of a day (approximately 6 hours).
