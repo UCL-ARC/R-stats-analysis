@@ -138,7 +138,7 @@ A more serious type of message is an **error**. Here's an example:
 
 ```{r geom-error}
 ggplot(data = complete_old, mapping = aes(x = weight, y = hindfoot_length)) +
-  geom_poit()
+  geom_point()
 ```
 
 As you can see, we only get the error message, with no plot, because something has actually gone wrong. This particular error message is fairly common, and it happened because we misspelled `point` as `poit`. Because there is no function named `geom_poit()`, R tells us it can't find a function with that name.
