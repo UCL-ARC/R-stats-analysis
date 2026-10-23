@@ -6,8 +6,8 @@ source: Rmd
 ---
 
 ```{r, include=FALSE}
-## Limit printing output to max. 100 lines to avoid endless scrolling
-options(max.print = 100)
+## Limit printing output to max. 30 lines to avoid endless scrolling
+options(max.print = 30)
 ```
 
 
@@ -41,12 +41,12 @@ options(max.print = 100)
 library(tidyverse)
 library(ggplot2)
 
+Up until this point, we have been working with the complete_old dataframe contained in the ratdat package. However, you typically won’t access data from an R package; it is much more common to access data files stored somewhere on your computer. We are now going to start using the data in our cleaned directory inside the data directory that you downloaded at the beginning of the lesson (instructions here). This file is called surveys_complete_77_89.csv.
+
 # loading data
-hgtwgt_survey <- read.csv("data/hgt_wgt.csv")
+surveys <- read_csv("data/cleaned/surveys_complete_77_89.csv")
 
 ```
-
-We are going to use synthetic data that has been generated based upon Health Survey for England, 2021 data tables. 
 
 ## The big picture
 
@@ -76,10 +76,9 @@ How do we convey information on what your data looks like, using numbers or figu
 First establish the distribution of the data. You can visualise this with a histogram.
 
 ```{r}
-ggplot(hgtwgt_survey, aes(x = weight.kg.)) +
+ggplot(surveys, aes(x = weight)) +
   geom_histogram()
 ```
-
 What is the distribution of this data?
 
 ### What is the distribution of population?
@@ -87,10 +86,9 @@ What is the distribution of this data?
 If the raw values are difficult to visualise, so we can take the log of the values and log those.  Try this command
 
 ```{r include=TRUE}
-ggplot(hgtwgt_survey, aes(x = log(weight.kg.))) +
+ggplot(surveys, aes(x = log(weight))) +
   geom_histogram()
 ```
-
 What is the distribution of this data?
 
 ## Parametric vs non-parametric analysis
@@ -145,48 +143,52 @@ Get them to plot the graphs. Explain that we are generating random data from dif
 ### Calculating mean and standard deviation
 
 ```{r}
-mean(hgtwgt_survey$weight.kg., na.rm = TRUE)
+mean(surveys$weight, na.rm = TRUE)
 ```
-
 Calculate the standard deviation and confirm that it is the square root of the variance:
 
 ```{r}
-sdweight <- sd(hgtwgt_survey$weight.kg., na.rm = TRUE)
+sdweight <- sd(surveys$weight, na.rm = TRUE)
 print(sdweight)
 
-varweight <- var(hgtwgt_survey$weight.kg., na.rm = TRUE)
+varweight <- var(surveys$weight, na.rm = TRUE)
 print(varweight)
 sqrt(varweight) == sdweight
 ```
+Calculate the standard deviation and confirm that it is the square root of the variance:
 
+```{r}
+sdweight <- sd(surveys$weight, na.rm = TRUE)
+print(sdweight)
+
+varweight <- var(surveys$weight, na.rm = TRUE)
+print(varweight)
+sqrt(varweight) == sdweight
+```
 The `na.rm` argument tells R to ignore missing values in the variable.
 
 ### Calculating median and interquartile range
 
 ```{r}
-median(hgtwgt_survey$weight.kg., na.rm = TRUE)
-```
+median(surveys$weight, na.rm = TRUE)
 
-```{r}
-IQR(hgtwgt_survey$weight.kg., na.rm = TRUE)
+IQR(surveys$weight, na.rm = TRUE)
 ```
-
 Again, we ignore the missing values.
 
 ## Describing discrete data
 
-In our data set there is a variable `gender.M.`, where there is a 1 this represents a Male, when there is a 0 this represents a Female. What is the proportion of males and females in this data set?
+In our data set there is a variable `sex`.What is the proportion of males and females in this data set?
 
 -   Frequencies
 
 ```{r}
-table(hgtwgt_survey$gender.M.)
+table(surveys$sex)
 ```
-
 -   Proportions
 
 ```{r}
-gendertable <- table(hgtwgt_survey$gender.M.)
+gendertable <- table(surveys$sex)
 prop.table(gendertable)
 ```
 
@@ -194,11 +196,10 @@ Contingency tables of frequencies can also be tabulated with **table()**. For ex
 
 ```{r}
 table(
-  hgtwgt_survey$gender.M.,
-  hgtwgt_survey$age.yrs.
+  surveys$plot_id,
+  surveys$species_id
 )
 ```
-
 Which leads quite naturally to the consideration of any association between the observed frequencies.
 
 # Inferential statistics
@@ -234,9 +235,9 @@ Always: the level of the independent variable has no effect on the level of the 
 It all starts with a hypothesis
 
 -   Null hypothesis
-    -   "There is no difference in mean height between men and women" $$mean\_height\_men - mean\_height\_women = 0$$
+    -   "There is no difference in mean hindfoot length between males and females" $$mean\_height\_men - mean\_height\_women = 0$$
 -   Alternate hypothesis
-    -   "There is a difference in mean height between men and women"
+    -   "There is a difference in mean hindfoot length between males and females"
 
 ## More on hypothesis testing
 
@@ -252,16 +253,14 @@ It all starts with a hypothesis
 
 ## Comparing means
 
-Let's use the hypothesis introduced aboove: is there is a difference in mean height between men and women?
+Let's use the hypothesis introduced above: is there is a difference in hind foot length between species?
 
 ```{r}
-hgtwgt_survey %>%
-  group_by(gender.M.) %>%
-  summarise(mean = mean(height.cm., na.rm=TRUE), n = n())
+surveys %>%
+  group_by(sex) %>%
+  summarise(mean = mean(hindfoot_length, na.rm=TRUE), n = n())
 ```
-
-
-Is the difference between the income ranks statistically significant?
+Is the difference between the sexes statistically significant?
 
 ## t-test
 
@@ -278,41 +277,41 @@ Is the difference between the income ranks statistically significant?
 ## Doing a t-test
 
 ```{r}
-t.test(height.cm. ~ gender.M., data = hgtwgt_survey)
+t.test(hindfoot_length. ~ sex, data = surveys)
 
 # we can also specify specific components
-t.test(height.cm. ~ gender.M., data = hgtwgt_survey)$statistic
-t.test(height.cm. ~ gender.M., data = hgtwgt_survey)$parameter
+t.test(hindfoot_length. ~ sex, data = surveys)$statistic
+t.test(hindfoot_length. ~ sex, data = surveys)$parameter
 ```
 
 Notice that the summary()** of the test contains more data than is output by default.
 
 ### t-test result
 
-Testing supported the rejection of the null hypothesis that there is no difference between the height of males and females in this data set (**t**=`r round(t.test(height.cm. ~ gender.M., data = hgtwgt_survey)$statistic,4)`, **df**= `r round(t.test(height.cm. ~ gender.M., data = hgtwgt_survey)$parameter,4)`,
-**p**= `r round( t.test(height.cm. ~ gender.M., data = hgtwgt_survey)$p.value,4)`).
+Testing supported the rejection of the null hypothesis that there is no difference between the height of males and females in this data set (**t**=`r round(t.test(hindfoot_length. ~ sex, data = surveys)$statistic,4)`, **df**= `r round(t.test(hindfoot_length. ~ sex, data = surveys)$parameter,4)`,
+**p**= `r round( t.test(hindfoot_length. ~ sex, data = surveys)$p.value,4)`).
 
 (Can you get p to display to four places?  Cf *format()*.)
 
 ## More than two levels of IV
 
-While the t-test is sufficient where there are two levels of the IV, for situations where there are more than two, we use the **ANOVA** family of procedures. To show this, we will compare the `height.cm.` between `age.yrs` . If the ANOVA result is statistically significant, we will use a post-hoc test method to do pairwise comparisons (here Tukey's Honest Significant Differences.)
+While the t-test is sufficient where there are two levels of the IV, for situations where there are more than two, we use the **ANOVA** family of procedures. To show this, we will compare the `hindfoot_length` between `species_id` . If the ANOVA result is statistically significant, we will use a post-hoc test method to do pairwise comparisons (here Tukey's Honest Significant Differences.)
 
 ```{r}
-anovamodel <- aov(hgtwgt_survey$height.cm. ~ hgtwgt_survey$age.yrs.)
+anovamodel <- aov(surveys$hindfoot_length ~ surveys$species_id)
 summary(anovamodel)
 
 TukeyHSD(anovamodel)
 ```
 
-# Regression Modelling
+## Regression Modelling
 
-The most common use of regression modelling is to explore the relationship between two continuous variables, for example between `weight.kg.` and `height.cm.` in our data. We can first determine whether there is any significant correlation between the values, and if there is, plot the relationship.
+The most common use of regression modelling is to explore the relationship between two continuous variables, for example between `weight` and `hindfoot_length` in our data. We can first determine whether there is any significant correlation between the values, and if there is, plot the relationship.
 
 ```{r}
-cor.test(hgtwgt_survey$weight.kg., hgtwgt_survey$height.cm.)
+cor.test(surveys$weight, surveys$hindfoot_length)
 
-ggplot(hgtwgt_survey, aes(weight.kg., height.cm.)) +
+ggplot(surveys, aes(weight, hindfoot_length)) +
   geom_point() +
   geom_smooth()
 ```
@@ -320,46 +319,46 @@ ggplot(hgtwgt_survey, aes(weight.kg., height.cm.)) +
 Having decided that a further investigation of this relationship is worthwhile, we can create a linear model with the function `lm()`.
 
 ``` {r}
-modelone <- lm(hgtwgt_survey$weight.kg. ~ hgtwgt_survey$height.cm.)
-summary(modelone)
+linear_model <- lm(surveys$weight ~ surveys$hindfoot_length)
+summary(linear_model)
 ```
 
-## Regression with a categorical IV (the t-test)
+### Regression with a categorical IV (the t-test)
 
 Run the following code chunk and compare the results to the t-test conducted earlier.
 
 ```{r}
-hgtwgt_survey %>%
-  mutate(gender.M. = factor(gender.M.))
+surveys %>%
+  mutate(sex = factor(sex))
 
-modelttest <- lm(hgtwgt_survey$height.cm. ~ hgtwgt_survey$gender.M.)
+cat_test <- lm(surveys$hindfoot_length ~ surveys$sex)
 
-summary(modelttest)
+summary(cat_test)
 ```
 :::::::::::::::::::::::::::::::::::::::  challenge
 
-## Challenge: Regression with a categorical IV (ANOVA)
+### Challenge: Regression with a categorical IV (ANOVA)
 
-Use the `lm()` function to model the relationship between `hgtwgtsurvey$height.cm.`
-and `hgtwgtsurvey$age.yrs.`. 
+Use the `lm()` function to model the relationship between `surveys$hindfoot_length`
+and `surveys$species_id`. 
 
 Compare the results with the ANOVA carried out earlier.
 
 :::::::::::::::  solution
 
-## Solution
+### Solution
 
-First we need to convert `age.yrs.` to a factor, then we can create our model.
-If we compare the p-values for the Anova (0.908) and the lm we have just created (0.9083)
+First we need to convert `species_id` to a factor, then we can create our model.
+If we compare the p-values for the Anova (<2e-16 *** and the lm we have just created (< 2.2e-16)
 we can see that the outcome is the same.
 
 ```{r}
-hgtwgt_survey %>%
-  mutate(age.yrs. = factor(age.yrs.))
+surveys %>%
+  mutate(species_id = factor(species_id))
 
-modelttest <- lm(hgtwgt_survey$height.cm. ~ hgtwgt_survey$age.yrs.)
+model_anova <- lm(surveys$hindfoot_length ~ surveys$species_id)
 
-summary(modelttest)
+summary(model_anova)
 
 ```
 
@@ -376,3 +375,5 @@ summary(modelttest)
 - Linear models (lm) can be used with continuous and categorical variables.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
