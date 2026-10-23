@@ -9,6 +9,8 @@ This lesson has been adapted from [Data Carpentry: R for data analysis and visua
 
 The content has been modified to include some additional content re: statistical analysis and plotting.
 
+Data used is a long term study of Banner-tailed kangaroo rats (D. spectabilis) as part of the Portal Project, a long-term ecological study of rodents, plants, and ants located in southeastern Arizona, U.S.A.
+
 This is an introduction to R designed for participants with no programming
 experience. It can be taught in 3/4 of a day (approximately 6 hours).
 It is a redesigned version of [the original Data Carpentry lesson](https://doi.org/10.5281/zenodo.12684301). 
