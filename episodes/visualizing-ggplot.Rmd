@@ -579,6 +579,37 @@ ggsave(filename = "images/rodent_size_plots.jpg", plot = finalplot,
        height = 6, width = 8)
 ```
 
+## Visualising categorical data
+
+We can use bar plots and pie charts to visualise catergorical data within our data set.
+
+In the example below we have visualised the count of each species within data set using a bar plot:
+
+```{r bar-plot}
+ggplot(complete_old, aes(y = reorder(species_id, species_id, FUN = length))) +
+  geom_bar(fill = "steelblue") +
+  labs(x = "Number of records", y = "Species ID",
+       title = "Records per species") +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 2))
+```
+
+This can alternatively be visualised using a pie chart:
+
+```{r pie-plot}
+
+# Count records per species 
+species_counts <- as.data.frame(table(complete_old$species_id))
+names(species_counts) <- c("species_id", "n")
+
+ggplot(species_counts, aes(x="", y=n, fill=species_id)) +
+  geom_bar(stat="identity", width=1, color="white") +
+  coord_polar("y", start=0) +
+  theme_void() # remove background, grid, numeric labels
+```
+
+How could this chart be improved?
+
 ::::::::::::::::::::::::::::::::::::: challenge 
 
 ## Challenge 4: Make your own plot
