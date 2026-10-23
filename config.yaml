@@ -62,7 +62,7 @@ episodes:
 - introduction-r-rstudio.Rmd
 - visualizing-ggplot.Rmd
 - how-r-thinks-about-data.Rmd
-- working-with-data.Rmd
+- basic-statistics.Rmd
 
 # Information for Learners
 learners:
