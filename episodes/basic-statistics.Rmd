@@ -288,8 +288,7 @@ Notice that the summary()** of the test contains more data than is output by def
 
 ### t-test result
 
-Testing supported the rejection of the null hypothesis that there is no difference between the height of males and females in this data set (**t**=`r round(t.test(hindfoot_length. ~ sex, data = surveys)$statistic,4)`, **df**= `r round(t.test(hindfoot_length. ~ sex, data = surveys)$parameter,4)`,
-**p**= `r round( t.test(hindfoot_length. ~ sex, data = surveys)$p.value,4)`).
+Testing supported the rejection of the null hypothesis that there is no difference between the hind foot length of males and females in this data set. 
 
 (Can you get p to display to four places?  Cf *format()*.)
 
