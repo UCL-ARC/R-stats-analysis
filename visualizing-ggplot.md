@@ -173,13 +173,15 @@ A more serious type of message is an **error**. Here's an example:
 
 ``` r
 ggplot(data = complete_old, mapping = aes(x = weight, y = hindfoot_length)) +
-  geom_poit()
+  geom_point()
 ```
 
-``` error
-Error in `geom_poit()`:
-! could not find function "geom_poit"
+``` warning
+Warning: Removed 3081 rows containing missing values or values outside the scale range
+(`geom_point()`).
 ```
+
+<img src="fig/visualizing-ggplot-rendered-geom-error-1.png" alt="" width="600" height="600" style="display: block; margin: auto;" />
 
 As you can see, we only get the error message, with no plot, because something has actually gone wrong. This particular error message is fairly common, and it happened because we misspelled `point` as `poit`. Because there is no function named `geom_poit()`, R tells us it can't find a function with that name.
 
@@ -724,6 +726,42 @@ After this, we can run `ggsave()` to save our plot. The first argument we give i
 ggsave(filename = "images/rodent_size_plots.jpg", plot = finalplot,
        height = 6, width = 8)
 ```
+
+## Visualising categorical data
+
+We can use bar plots and pie charts to visualise catergorical data within our data set.
+
+In the example below we have visualised the count of each species within data set using a bar plot:
+
+
+``` r
+ggplot(complete_old, aes(y = reorder(species_id, species_id, FUN = length))) +
+  geom_bar(fill = "steelblue") +
+  labs(x = "Number of records", y = "Species ID",
+       title = "Records per species") +
+  theme_minimal() +
+  theme(axis.text.y = element_text(size = 2))
+```
+
+<img src="fig/visualizing-ggplot-rendered-bar-plot-1.png" alt="" width="600" height="600" style="display: block; margin: auto;" />
+
+This can alternatively be visualised using a pie chart:
+
+
+``` r
+# Count records per species 
+species_counts <- as.data.frame(table(complete_old$species_id))
+names(species_counts) <- c("species_id", "n")
+
+ggplot(species_counts, aes(x="", y=n, fill=species_id)) +
+  geom_bar(stat="identity", width=1, color="white") +
+  coord_polar("y", start=0) +
+  theme_void() # remove background, grid, numeric labels
+```
+
+<img src="fig/visualizing-ggplot-rendered-pie-plot-1.png" alt="" width="600" height="600" style="display: block; margin: auto;" />
+
+How could this chart be improved?
 
 ::::::::::::::::::::::::::::::::::::: challenge 
 
