@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<title>Data Analysis and Visualization in R for Ecologists: Key Points</title>
+<title>Introduction to Statistical Analysis in R/RStudio: Key Points</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="../assets/themetoggle.js"></script><link rel="stylesheet" type="text/css" href="../assets/styles.css">
 <script src="../assets/scripts.js" type="text/javascript"></script><!-- mathjax --><!-- NOTE: https://docs.mathjax.org/en/latest/output/mathml.html#mathml-support --><!-- Changes from V2 to V4: https://mathjax.github.io/MathJax-demos-web/convert-configuration/convert-configuration.html
@@ -43,6 +43,15 @@
         <a href="index.html">
         <img id="dc-logo" alt="Data Carpentry" src="../assets/images/data-logo.svg"></a>
 
+        <span class="badge text-bg-warning">
+          <abbr title="This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.">
+            <a href="https://docs.carpentries.org/resources/curriculum/lesson-life-cycle.html" class="external-link alert-link">
+              <i aria-hidden="true" class="icon" data-feather="alert-triangle" style="border-radius: 5px"></i>
+              Alpha
+            </a>
+            <span class="visually-hidden">This lesson is in the alpha phase, which means that it has been taught once and lesson authors are iterating on feedback.</span>
+          </abbr>
+        </span>
 
       </div>
     </div>
@@ -94,7 +103,7 @@
       <img class="small-logo" alt="Data Carpentry" src="../assets/images/data-logo-sm.svg"></a>
     </div>
     <div class="lesson-title-md">
-      Data Analysis and Visualization in R for Ecologists
+      Introduction to Statistical Analysis in R/RStudio
     </div>
     <div class="search-icon-sm">
       <!-- TODO: do not show until we have search
@@ -105,7 +114,7 @@
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 <li class="nav-item">
           <span class="lesson-title">
-            Data Analysis and Visualization in R for Ecologists
+            Introduction to Statistical Analysis in R/RStudio
           </span>
         </li>
         <li class="nav-item">
@@ -272,7 +281,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="working-with-data.html">4. Working with data</a>
+        <a href="basic-statistics.html">4. Basic Statistics: describing, modelling and reporting</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -387,23 +396,13 @@ functions</li>
 especially when using new functions</li>
 <li>factors can be useful, but behave differently from character
 vectors</li>
-</ul></section><section id="working-with-data"><h2 class="section-heading"><a href="working-with-data.html">Working with data</a></h2>
+</ul></section><section id="basic-statistics"><h2 class="section-heading"><a href="basic-statistics.html">Basic Statistics: describing, modelling and reportingDescribing data<a class="anchor" aria-label="anchor" href="#describing-data"></a>Inferential statistics<a class="anchor" aria-label="anchor" href="#inferential-statistics"></a></a></h2>
 <hr class="half-width">
 <ul>
-<li>use <code>filter()</code> to subset rows and <code>select()</code>
-to subset columns</li>
-<li>build up pipelines one step at a time before assigning the
-result</li>
-<li>it is often best to keep components of dates separate until needed,
-then use <code>mutate()</code> to make a date column</li>
-<li>
-<code>group_by()</code> can be used with <code>summarize()</code> to
-collapse rows or <code>mutate()</code> to keep the same number of
-rows</li>
-<li>
-<code>pivot_wider()</code> and <code>pivot_longer()</code> are
-powerful for reshaping data, but you should plan out how to use them
-thoughtfully</li>
+<li>R has a range of in-built functions to enable initial data
+exploration.</li>
+<li>Linear models (lm) can be used with continuous and categorical
+variables.</li>
 </ul></section>
 </div>
     </main>
@@ -417,14 +416,14 @@ thoughtfully</li>
         <p>This lesson is subject to the <a href="CODE_OF_CONDUCT.html">Code of Conduct</a></p>
         <p>
 
-        <a href="https://github.com/datacarpentry/R-ecology-lesson/edit/main/README.md" class="external-link">Edit on GitHub</a>
+        <a href="https://github.com/UCL-ARC/R-stats-analysis/edit/main/README.md" class="external-link">Edit on GitHub</a>
 
 	
-        | <a href="https://github.com/datacarpentry/R-ecology-lesson/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
-        | <a href="https://github.com/datacarpentry/R-ecology-lesson/" class="external-link">Source</a></p>
+        | <a href="https://github.com/UCL-ARC/R-stats-analysis/blob/main/CONTRIBUTING.md" class="external-link">Contributing</a>
+        | <a href="https://github.com/UCL-ARC/R-stats-analysis/" class="external-link">Source</a></p>
         <p>
-        <a href="https://github.com/datacarpentry/R-ecology-lesson/blob/main/" class="external-link">Cite</a>
-        | <a href="mailto:team@carpentries.org">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
+        <a href="https://github.com/UCL-ARC/R-stats-analysis/blob/main/" class="external-link">Cite</a>
+        | <a href="mailto:s.ahern@ucl.ac.uk">Contact</a> | <a href="https://carpentries.org/about/" class="external-link">About</a></p>
 		</div>
 		<div class="col-md-6">
 
@@ -453,9 +452,9 @@ thoughtfully</li>
   "creativeWorkStatus": "active",
   "url": "https://datacarpentry.org/R-ecology-lesson/instructor/key-points.html",
   "identifier": "https://datacarpentry.org/R-ecology-lesson/instructor/key-points.html",
-  "dateCreated": "2015-04-02",
-  "dateModified": "2026-11-03",
-  "datePublished": "2026-11-03"
+  "dateCreated": "2026-10-22",
+  "dateModified": "2026-11-05",
+  "datePublished": "2026-11-05"
 }
 
   </script><script>
