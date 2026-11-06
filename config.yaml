@@ -63,6 +63,7 @@ episodes:
 - visualizing-ggplot.Rmd
 - how-r-thinks-about-data.Rmd
 - basic-statistics.Rmd
+- working-with-data.Rmd #supplemental content
 
 # Information for Learners
 learners:
