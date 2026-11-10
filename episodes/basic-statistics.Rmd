@@ -45,7 +45,7 @@ library(tidyverse)
 #tidyverse is a large package that incorporates other packages
 
 # loading data
-surveys <- read_csv("data/cleaned/surveys_complete_77_89.csv")
+surveys <- read.csv("data/cleaned/surveys_complete_77_89.csv")
 ```
 
 ## The big picture
