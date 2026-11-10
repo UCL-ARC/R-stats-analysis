@@ -2,14 +2,6 @@
 # Values for this lesson.
 #------------------------------------------------------------
 
-# Which carpentry is this (swc, dc, lc, or cp)?
-# swc: Software Carpentry
-# dc: Data Carpentry
-# lc: Library Carpentry
-# cp: Carpentries (to use for instructor training for instance)
-# incubator: The Carpentries Incubator
-carpentry:
-
 # Overall title for pages.
 title: 'Introduction to Statistical Analysis in R/RStudio'
 
