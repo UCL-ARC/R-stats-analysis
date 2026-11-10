@@ -1,3 +1,4 @@
+---
 #------------------------------------------------------------
 # Values for this lesson.
 #------------------------------------------------------------
@@ -21,7 +22,7 @@ keywords: 'ggplot2, tidyverse, data-visualization, data-visualisation, data-wran
 
 # Life cycle stage of the lesson
 # possible values: pre-alpha, alpha, beta, stable
-life_cycle: 'alpha'
+life_cycle: 'beta'
 
 # License of the lesson
 license: 'CC-BY 4.0'
@@ -84,4 +85,3 @@ profiles:
 url: 'https://datacarpentry.org/R-ecology-lesson'
 analytics: carpentries
 lang: en
-
