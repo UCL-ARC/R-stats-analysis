@@ -1,6 +1,12 @@
-#------------------------------------------------------------
-# Values for this lesson.
-#------------------------------------------------------------
+------------------------------------------------------------
+
+# Which carpentry is this (swc, dc, lc, or cp)?
+# swc: Software Carpentry
+# dc: Data Carpentry
+# lc: Library Carpentry
+# cp: Carpentries (to use for instructor training for instance)
+# incubator: The Carpentries Incubator
+carpentry: 'dc'
 
 # Overall title for pages.
 title: 'Introduction to Statistical Analysis in R/RStudio'
@@ -9,7 +15,11 @@ title: 'Introduction to Statistical Analysis in R/RStudio'
 created: '2026-10-22'
 
 # Comma-separated list of keywords for the lesson
-keywords: 'ggplot2, tidyverse, data-visualization, data-visualisation, data-wrangling, data-carpentry, R' 
+keywords: 'ggplot2, tidyverse, data-visualization, data-visualisation, data-wrangling, data-carpentry, R'
+
+# Life cycle stage of the lesson
+# possible values: pre-alpha, alpha, beta, stable
+life_cycle: 'beta'
 
 # License of the lesson
 license: 'CC-BY 4.0'
@@ -72,4 +82,3 @@ profiles:
 url: 'https://datacarpentry.org/R-ecology-lesson'
 analytics: carpentries
 lang: en
-
