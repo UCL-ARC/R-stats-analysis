@@ -9,11 +9,7 @@ title: 'Introduction to Statistical Analysis in R/RStudio'
 created: '2026-10-22'
 
 # Comma-separated list of keywords for the lesson
-keywords: 'ggplot2, tidyverse, data-visualization, data-visualisation, data-wrangling, data-carpentry, R'
-
-# Life cycle stage of the lesson
-# possible values: pre-alpha, alpha, beta, stable
-life_cycle: 
+keywords: 'ggplot2, tidyverse, data-visualization, data-visualisation, data-wrangling, data-carpentry, R' 
 
 # License of the lesson
 license: 'CC-BY 4.0'
